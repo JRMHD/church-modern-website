@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PrayerRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,4 @@ require __DIR__ . '/auth.php';
 
 
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/prayer-request', [PrayerRequestController::class, 'submit'])->name('prayer.submit');

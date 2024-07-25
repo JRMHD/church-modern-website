@@ -616,55 +616,75 @@
                 </div>
                 <div class="col-12">
                     <div class="contact-form">
-                        <form action="#">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('prayer.submit') }}" method="POST">
+                            @csrf
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="input-group mt-30">
-                                        <input type="text" placeholder="Full Name Here" name="fullname"> <span
-                                            class="icon"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" placeholder="Full Name Here" name="fullname"
+                                            value="{{ old('fullname') }}">
+                                        <span class="icon"><i class="fa-solid fa-user"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="input-group mt-30">
-                                        <input type="email" placeholder="Email Here" name="email"> <span
-                                            class="icon"><i class="fa-solid fa-envelope"></i></span>
+                                        <input type="email" placeholder="Email Here" name="email"
+                                            value="{{ old('email') }}">
+                                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="input-group mt-30">
-                                        <input type="text" placeholder="Phone No" name="mobile"> <span
-                                            class="icon"><i class="fa-solid fa-phone"></i></span>
+                                        <input type="text" placeholder="Phone No" name="mobile"
+                                            value="{{ old('mobile') }}">
+                                        <span class="icon"><i class="fa-solid fa-phone"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="input-group mt-30">
-                                        <input type="text" placeholder="Address Here" name="address"> <span
-                                            class="icon"><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+                                        <input type="text" placeholder="Address Here" name="address"
+                                            value="{{ old('address') }}">
+                                        <span class="icon"><i class="fa-sharp fa-solid fa-location-dot"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12">
                                     <div class="input-group mt-30">
-                                        <input type="text" placeholder="Subject" name="subject"> <span
-                                            class="icon"><i class="fa-solid fa-user-pen"></i></span>
+                                        <input type="text" placeholder="Subject" name="subject"
+                                            value="{{ old('subject') }}">
+                                        <span class="icon"><i class="fa-solid fa-user-pen"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-12">
                                     <div class="input-group textarea-group mt-30">
-                                        <textarea placeholder="Message Us" name="message"></textarea> <span class="icon"><i
-                                                class="fa-solid fa-pen-to-square"></i></span>
+                                        <textarea placeholder="Message Us" name="message">{{ old('message') }}</textarea>
+                                        <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
                                     </div>
                                 </div>
-
                                 <div class="col-12">
                                     <div class="input-group textarea-group mt-30">
-                                        <button class="main-btn small-size ml-auto mr-auto">Send Message <i
-                                                class="fa-solid fa-arrow-right"></i></button>
+                                        <button type="submit" class="main-btn small-size ml-auto mr-auto">Send
+                                            Message <i class="fa-solid fa-arrow-right"></i></button>
                                     </div>
                                 </div>
                             </div>
